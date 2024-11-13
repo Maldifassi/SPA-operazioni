@@ -32,7 +32,7 @@
             // Recupero i valori dagli input
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
-
+            
             // Verifica se i numeri sono validi
             if (isNaN(num1) || isNaN(num2)) {
                 document.getElementById('risultato').innerText = "Inserisci numeri validi!";
@@ -41,19 +41,18 @@
 
             // Recupero l'operazione selezionata
             const operazione = document.querySelector('input[name="operazione"]:checked');
-
+            
             if (!operazione) {
                 document.getElementById('risultato').innerText = "Seleziona un'operazione!";
                 return;
             }
 
+            // Prepara i dati da inviare nell'URL
             const operazioneSelezionata = operazione.value;
-
-            // Costruisce la query string per la richiesta GET
-            const queryString = `?num1=${num1}&num2=${num2}&operazione=${operazioneSelezionata}`;
+            const url = `/calcola?num1=${num1}&num2=${num2}&operazione=${operazioneSelezionata}`;
 
             // Effettua la richiesta GET
-            fetch('https://3245-maldifassi-spaoperazion-qmcs12k66ff.ws-eu116.gitpod.io/calcola' + queryString, {
+            fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
